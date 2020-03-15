@@ -19,8 +19,8 @@ export default class DayView extends Component {
             .then(wdata => {
                 // 
                 // todo fix
-                const currentDayTable = wdata.list.filter(reading => new Date(reading.dt_txt).getHours())
-
+                const currentDayTable = wdata.list.filter(reading => new Date(reading.dt_txt))
+                currentDayTable.length = 5;
 
                 this.setState({
                     allData: wdata,
@@ -48,7 +48,7 @@ export default class DayView extends Component {
     render() {
         return(
             <div className="container">
-            <h1 className="display-4 jumbotron">Dagens vejr</h1>
+            <h1 className="display-4 jumbotron">Dagens vejrudsigt</h1>
                 <input type="text" id="searchCity" placeholder={" " /*+ this.state.city*/} onChange={this.handleInputChange}/>
                 <button onClick={this.handleSubmit}>Find</button>
             <hr />
