@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import apiConfig from '../../ApiKey';
 import DataCard from '../../components/Datacard';
 
 export default class WeekView extends Component {
@@ -11,24 +10,13 @@ export default class WeekView extends Component {
         city:'København'
     }
 
-    componentDidMount = () => {        
-        const city = this.state.city
-        const weekURL = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&lang=da&APPID=${apiConfig.apiKey}`
-        fetch(weekURL)
-            .then(res => res.json())
-            .then(wdata => {
-                const timeNow = new Date().getHours()
-                // isolating dataset instances within 3hours from current time (data gets pulled every 3h for 5d)
-                // todo make dry
-                const currentTimeTable = wdata.list.filter(reading => new Date(reading.dt_txt).getHours() >= timeNow && new Date(reading.dt_txt).getHours() < timeNow +3)
-
-                this.setState({
-                    allData: wdata,
-                    currentTime: currentTimeTable
-                }, () => console.log(this.state))
-
+    componentDidMount = () => {    
+        const { reading } = this.props    
+        this.setState({
+            allData: reading.allData,
+            currentTime: reading.currentTime
+        })
                 document.getElementById("cityTitle").innerHTML = this.state.allData.city.name
-            })  
     }
 
     dataCards = () => {

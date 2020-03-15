@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import apiConfig from '../../ApiKey';
 import DataCard from '../../components/Datacard';
 
 export default class DayView extends Component {
 
-    state = {
-        allData:[],
-        currentDay:[],
-        // todo local area
-        city:'København'
-    }
+/*
 
     componentDidMount = () => {        
         const city = this.state.city
@@ -43,21 +37,24 @@ export default class DayView extends Component {
 
     handleSubmit = () => {
         this.componentDidMount();
-    }
+    } */
 
     render() {
+        let reading
+        if (this.props.reading1 != '') {reading = this.props.reading1
         return(
-            <div className="container">
+            <h1>{reading[0].dt} </h1>
+/*             <div className="container">
             <h1 className="display-4 jumbotron">Dagens vejrudsigt</h1>
-                <input type="text" id="searchCity" placeholder={" " /*+ this.state.city*/} onChange={this.handleInputChange}/>
+                <input type="text" id="searchCity" placeholder={" " + this.state.city} onChange={this.handleInputChange}/>
                 <button onClick={this.handleSubmit}>Find</button>
             <hr />
         <h5 id="cityTitle" className="display-5 text-muted">{}</h5>
             <div className="row justify-content-center">     
                 {this.dataCards()}
             </div>
-            </div>
-        );
+            </div> */
+        );} else { return(<h1>a</h1>);}
     }
 }
 
