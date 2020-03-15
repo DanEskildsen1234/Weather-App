@@ -3,6 +3,11 @@ import DataCard from '../../components/Datacard';
 
 export default class DayView extends Component {
 
+    state = {
+        data: [],
+        loaded: false
+    }
+
 /*
 
     componentDidMount = () => {        
@@ -39,11 +44,17 @@ export default class DayView extends Component {
         this.componentDidMount();
     } */
 
+    async componentDidMount() {
+        await this.props.reading1
+        this.setState({data: this.props.reading1, loaded: true})
+    }
+
     render() {
-        let reading
-        if (this.props.reading1 != '') {reading = this.props.reading1
+        console.log(this.state)
+        console.log(this.props)
+       // console.log(this.props.reading1[0])
         return(
-            <h1>{reading[0].dt} </h1>
+            <div>{/* {this.state.loaded ? this.props.reading1[0].dt : null} */}</div>
 /*             <div className="container">
             <h1 className="display-4 jumbotron">Dagens vejrudsigt</h1>
                 <input type="text" id="searchCity" placeholder={" " + this.state.city} onChange={this.handleInputChange}/>
@@ -54,7 +65,7 @@ export default class DayView extends Component {
                 {this.dataCards()}
             </div>
             </div> */
-        );} else { return(<h1>a</h1>);}
+        );
     }
 }
 
