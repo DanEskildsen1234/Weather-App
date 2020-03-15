@@ -3,7 +3,7 @@ import 'moment/locale/da';
 import 'moment-timezone';
 var moment = require('moment');
 
-export default class DayView extends Component {
+export default class DataCard extends Component {
 
     render() {
         const { reading } = this.props

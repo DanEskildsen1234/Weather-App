@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import apiConfig from '../ApiKey';
-import DayView from './Dayview';
+import apiConfig from '../../ApiKey';
+import DataCard from '../../components/Datacard';
 
 export default class WeekView extends Component {
 
@@ -18,20 +18,21 @@ export default class WeekView extends Component {
             .then(res => res.json())
             .then(wdata => {
                 const timeNow = new Date().getHours()
+                // isolating dataset instances within 3hours from current time (data gets pulled every 3h for 5d)
                 // todo make dry
                 const currentTimeTable = wdata.list.filter(reading => new Date(reading.dt_txt).getHours() >= timeNow && new Date(reading.dt_txt).getHours() < timeNow +3)
 
                 this.setState({
                     allData: wdata,
-                    currentTime: currentTimeTable,
+                    currentTime: currentTimeTable
                 }, () => console.log(this.state))
 
                 document.getElementById("cityTitle").innerHTML = this.state.allData.city.name
             })  
     }
 
-    dayCards = () => {
-        return this.state.currentTime.map((reading, index) => <DayView reading={reading} key={index} />)
+    dataCards = () => {
+        return this.state.currentTime.map((reading, index) => <DataCard reading={reading} key={index} />)
     }
 
     handleInputChange = (event) => {
@@ -51,9 +52,9 @@ export default class WeekView extends Component {
                 <input type="text" id="searchCity" placeholder={" " + this.state.city} onChange={this.handleInputChange}/>
                 <button onClick={this.handleSubmit}>Find</button>
             <hr />
-        <h5 id="cityTitle" className="display-5 text-muted">{}</h5>
+            <h5 id="cityTitle" className="display-5 text-muted">{}</h5>
             <div className="row justify-content-center">     
-                {this.dayCards()}     
+                {this.dataCards()}     
             </div>
             </div>
         );
