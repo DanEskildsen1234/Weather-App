@@ -20,13 +20,17 @@ export default class WeekView extends Component {
                 const timeNow = new Date().getHours()
                 // isolating dataset instances within 3hours from current time (data gets pulled every 3h for 5d)
                 // todo make dry
-                const currentTimeTable = wdata.list.filter(reading => new Date(reading.dt_txt).getHours() >= timeNow && new Date(reading.dt_txt).getHours() < timeNow +3)
+                try {
+                    const currentTimeTable = wdata.list.filter(reading => new Date(reading.dt_txt).getHours() >= timeNow && new Date(reading.dt_txt).getHours() < timeNow +3)
 
-                this.setState({
-                    allData: wdata,
-                    currentTime: currentTimeTable
-                }, () => console.log(this.state))
-
+                    this.setState({
+                        allData: wdata,
+                        currentTime: currentTimeTable
+                    }, () => console.log(this.state))
+                }
+                catch(error) {
+                    document.getElementById("errorTxt").innerHTML = "Please enter a valid city name"
+                }
                 document.getElementById("cityTitle").innerHTML = this.state.allData.city.name
             })  
     }
@@ -42,7 +46,7 @@ export default class WeekView extends Component {
     }
 
     handleSubmit = () => {
-        this.componentDidMount();
+        this.componentDidMount()
     }
 
     render() {
@@ -51,6 +55,7 @@ export default class WeekView extends Component {
             <h1 className="display-4 jumbotron">5 dages prognose</h1>
                 <input type="text" id="searchCity" placeholder={" " + this.state.city} onChange={this.handleInputChange}/>
                 <button onClick={this.handleSubmit}>Find</button>
+                <div id="errorTxt"></div>
             <hr />
             <h5 id="cityTitle" className="display-5 text-muted">{}</h5>
             <div className="row justify-content-center">     
