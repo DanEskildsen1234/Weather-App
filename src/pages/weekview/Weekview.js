@@ -27,9 +27,10 @@ export default class WeekView extends Component {
                         allData: wdata,
                         currentTime: currentTimeTable
                     }, () => console.log(this.state))
+                    document.getElementById("errorTxt").innerHTML = ''
                 }
                 catch(error) {
-                    document.getElementById("errorTxt").innerHTML = "Please enter a valid city name"
+                    document.getElementById("errorText").innerHTML = `Fandt ingen resultater for ${city}`
                 }
                 document.getElementById("cityTitle").innerHTML = this.state.allData.city.name
             })  
@@ -55,7 +56,7 @@ export default class WeekView extends Component {
             <h1 className="display-4 jumbotron">5 dages prognose</h1>
                 <input type="text" id="searchCity" placeholder={" " + this.state.city} onChange={this.handleInputChange}/>
                 <button onClick={this.handleSubmit}>Find</button>
-                <div id="errorTxt"></div>
+                <div id="errorText"></div>
             <hr />
             <h5 id="cityTitle" className="display-5 text-muted">{}</h5>
             <div className="row justify-content-center">     

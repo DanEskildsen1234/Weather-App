@@ -27,9 +27,10 @@ export default class DayView extends Component {
                         allData: wdata,
                         currentDay: currentDayTable
                     }, () => console.log(this.state))
+                    document.getElementById("errorText").innerHTML = ''
                 }
                 catch(error) {
-                    document.getElementById("errorTxt").innerHTML = "Please enter a valid city name"
+                    document.getElementById("errorText").innerHTML = `Fandt ingen resultater for ${city}`
                 }
                 document.getElementById("cityTitle").innerHTML = this.state.allData.city.name          
             })
@@ -54,7 +55,7 @@ export default class DayView extends Component {
             <h1 className="display-4 jumbotron">Dagens vejrudsigt</h1>
                 <input type="text" id="searchCity" placeholder={" " + this.state.city} onChange={this.handleInputChange}/>
                 <button onClick={this.handleSubmit}>Find</button>
-                <div id="errorTxt"></div>
+                <div id="errorText"></div>
             <hr />
         <h5 id="cityTitle" className="display-5 text-muted">{}</h5>
             <div className="row justify-content-center">     
