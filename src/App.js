@@ -12,19 +12,19 @@ class App extends Component {
       <Router>
         <nav>
           <li>
-            <Link to="/">Dagens vejr</Link>
+            <Link to="/weather-app">Dagens vejr</Link>
             </li>
             <span id="navPipe">|</span>
             <li>
-            <Link to="/uge">Ugens vejr</Link>
+            <Link to="/weather-app/uge">Ugens vejr</Link>
             </li>
         </nav>
 
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/weather-app">
             <DayView />
           </Route>
-          <Route path="/uge">
+          <Route path="/weather-app/uge">
             <WeekView />
           </Route>
         </Switch>

@@ -13,7 +13,7 @@ export default class WeekView extends Component {
 
     componentDidMount = () => {        
         const city = this.state.city
-        const weekURL = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&lang=da&APPID=${apiConfig.apiKey}`
+        const weekURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&lang=da&APPID=${apiConfig.apiKey}`
         fetch(weekURL)
             .then(res => res.json())
             .then(wdata => {
@@ -27,7 +27,7 @@ export default class WeekView extends Component {
                         allData: wdata,
                         currentTime: currentTimeTable
                     }, () => console.log(this.state))
-                    document.getElementById("errorTxt").innerHTML = ''
+                    document.getElementById("errorText").innerHTML = ''
                 }
                 catch(error) {
                     document.getElementById("errorText").innerHTML = `Fandt ingen resultater for ${city}`
