@@ -1,4 +1,5 @@
-## Simple Weather app made with React, using OpenWeatherMap api
+## Simple Weather app made with React
+Fetches data from OpenWeatherMap api
 Published with github.io https://daneskildsen1234.github.io/weather-app/ 
 
 -------
