@@ -27,7 +27,7 @@ export default class WeekView extends Component {
                         allData: wdata,
                         currentTime: currentTimeTable
                     }, () => console.log(this.state))
-                    document.getElementById("errorTxt").innerHTML = ''
+                    document.getElementById("errorText").innerHTML = ''
                 }
                 catch(error) {
                     document.getElementById("errorText").innerHTML = `Fandt ingen resultater for ${city}`
