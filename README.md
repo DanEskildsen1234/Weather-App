@@ -1,3 +1,8 @@
+## Simple Weather app made with React, using OpenWeatherMap api
+Published with github.io https://daneskildsen1234.github.io/weather-app/ 
+
+-------
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
